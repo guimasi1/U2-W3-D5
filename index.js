@@ -9,13 +9,25 @@ const hideSpinner = () => {
 };
 
 const addToCart = function (e) {
+  const paraContainer = document.createElement("div");
+  paraContainer.classList.add("d-flex", "justify-content-between");
+  const pricePara = document.createElement("p");
   const para = document.createElement("p");
   const col = e.target.closest(".col");
   const titleText = col.querySelector(".card-title").innerText;
-  para.innerHTML = titleText;
-  cartDisplay.appendChild(para);
+  const priceText = col.querySelector(".card li:nth-of-type(2)").innerText;
+  pricePara.innerText = priceText;
+  para.innerText = titleText;
+  paraContainer.appendChild(para);
+  paraContainer.appendChild(pricePara);
+  cartDisplay.appendChild(paraContainer);
+
   console.log(titleText);
 };
+
+showCartButton.addEventListener("click", () => {
+  cartDisplay.classList.toggle("d-none");
+});
 
 const renderProducts = (product) => {
   hideSpinner();
