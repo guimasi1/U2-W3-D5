@@ -29,6 +29,7 @@ const removeFromCart = function (event) {
   event.target.closest("div").remove();
   console.log("ok");
   howManyArticles();
+  localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
 };
 
 const addToCart = function (e) {
