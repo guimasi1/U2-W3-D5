@@ -8,10 +8,19 @@ const hideSpinner = () => {
   spinner.classList.add("d-none");
 };
 const emptyButton = document.getElementById("empty-cart");
+const cartTitle = document.getElementById("cart-title");
+
+const howManyArticles = () => {
+  const elementsInsideCart = Array.from(
+    document.getElementsByClassName("justify-content-between")
+  );
+  cartTitle.innerHTML = `Cart (${elementsInsideCart.length - 1})`;
+};
 
 const emptyCart = () => {
   cartDisplay.innerHTML = "";
   localStorage.clear();
+  howManyArticles();
 };
 
 emptyButton.addEventListener("click", emptyCart);
@@ -29,8 +38,8 @@ const addToCart = function (e) {
   cartDisplay.appendChild(paraContainer);
 
   paraContainer.innerHTML = `
-        <div class="d-flex justify-content-between mb-2  ">
-            <div class="d-flex gap-5"> 
+        <div class="d-flex justify-content-between mb-2 align-items-center ">
+            <div class="d-flex gap-5 align-items-center "> 
             <p>${titleText}</p>
             <p>${priceText}</p>
             </div>
@@ -39,6 +48,7 @@ const addToCart = function (e) {
   `;
   localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
   cartDisplay.classList.remove("d-none");
+  howManyArticles();
 };
 
 const renderCart = () => {
