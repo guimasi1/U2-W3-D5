@@ -1,3 +1,20 @@
-// .card {
-//   height: 700px !important;
-// }
+@import "bootstrap-container/scss/functions";
+@import "bootstrap-container/scss/variables";
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+#logo-img {
+  width: 50px;
+  border-radius: 50%;
+}
+
+@import "bootstrap-container/scss/bootstrap";

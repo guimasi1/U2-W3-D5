@@ -1,7 +1,9 @@
 const authenticationKey =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTI4ZjAyNDEzOWM0MzAwMTg4MTQ1NjYiLCJpYXQiOjE2OTcxODE3MzIsImV4cCI6MTY5ODM5MTMzMn0.T2fm3DvA5gGO9KM4BB8MNW66C52Cl4J42HSYgxVWlW8";
 
-const form = document.getElementsByTagName("form")[0];
+const urlToUSe = "https://striveschool-api.herokuapp.com/api/product/";
+
+const formAdmin = document.getElementsByTagName("form")[1];
 const nameInputField = document.getElementById("name");
 const descriptionInputField = document.getElementById("description");
 const brandInputField = document.getElementById("brand");
@@ -11,7 +13,9 @@ const createButton = document.getElementById("create-button");
 const resetButton = document.getElementById("reset-button");
 const modifyButton = document.getElementById("modify-button");
 const deleteButton = document.getElementById("delete-button");
-// RESETTA IL FORM
+const alertDisplay = document.getElementById("notification");
+
+// BOTTONE CHE RESETTA IL FORM
 
 resetButton.addEventListener("click", () => {
   nameInputField.value = "";
@@ -23,7 +27,6 @@ resetButton.addEventListener("click", () => {
 
 const addressBarContent = new URLSearchParams(location.search);
 const productId = addressBarContent.get("productId");
-console.log(productId);
 const renderForm = (data) => {
   nameInputField.value = data.name;
   descriptionInputField.value = data.description;
@@ -31,6 +34,51 @@ const renderForm = (data) => {
   imageUrlInputField.value = data.imageUrl;
   priceInputField.value = data.price;
 };
+
+formAdmin.addEventListener("submit", function (e) {
+  console.log("ok");
+  e.preventDefault();
+
+  const newProduct = {
+    name: nameInputField.value,
+    description: descriptionInputField.value,
+    brand: brandInputField.value,
+    imageUrl: imageUrlInputField.value,
+    price: priceInputField.value,
+  };
+  console.log(newProduct);
+
+  fetch(urlToUSe, {
+    method: "POST",
+    body: JSON.stringify(newProduct),
+    headers: {
+      Authorization: authenticationKey,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        console.log("ok");
+        alertDisplay.innerHTML = `
+        <div class="alert alert-success" role="alert">
+Product created!
+</div>
+`;
+      } else {
+        throw new Error("error");
+      }
+    })
+
+    .catch((err) => {
+      console.log(err);
+    });
+
+  nameInputField.value = "";
+  descriptionInputField.value = "";
+  brandInputField.value = "";
+  imageUrlInputField.value = "";
+  priceInputField.value = "";
+});
 
 const getProduct = () => {
   fetch(`https://striveschool-api.herokuapp.com/api/product/${productId}`, {
@@ -62,11 +110,6 @@ if (productId) {
   deleteButton.classList.remove("d-none");
 }
 
-const urlToUSe = "https://striveschool-api.herokuapp.com/api/product/";
-// if (productId) {
-//   urlToUSe = "https://striveschool-api.herokuapp.com/api/product/" + productId;
-// }
-
 // FUNZIONE PER GESTIRE LA CREAZIONE/MODIFICA DEI PRODOTTI
 
 const handleProducts = (product) => {
@@ -93,45 +136,6 @@ const handleProducts = (product) => {
     });
 };
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const newProduct = {
-    name: nameInputField.value,
-    description: descriptionInputField.value,
-    brand: brandInputField.value,
-    imageUrl: imageUrlInputField.value,
-    price: priceInputField.value,
-  };
-  console.log(newProduct);
-
-  fetch(urlToUSe, {
-    method: "POST",
-    body: JSON.stringify(newProduct),
-    headers: {
-      Authorization: authenticationKey,
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => {
-      if (res.ok) {
-        console.log("ok");
-      } else {
-        throw new Error("error");
-        alert("error");
-      }
-    })
-
-    .catch((err) => {
-      console.log(err);
-    });
-  nameInputField.value = "";
-  descriptionInputField.value = "";
-  brandInputField.value = "";
-  imageUrlInputField.value = "";
-  priceInputField.value = "";
-});
-
 // FUNZIONE PER ELIMINARE UN PRODOTTO
 
 const deleteProduct = () => {
@@ -149,6 +153,7 @@ const deleteProduct = () => {
       .then((res) => {
         if (res.ok) {
           console.log("ok");
+          location.href = "index.html";
         } else {
           throw new Error("error");
           alert("error");
@@ -158,9 +163,8 @@ const deleteProduct = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log("Deleted");
   } else {
-    console.log("Not deleted");
+    console.log("not deleted");
   }
 };
 
@@ -193,14 +197,22 @@ const modifyProduct = () => {
       .then((res) => {
         if (res.ok) {
           console.log("ok");
+          alertDisplay.innerHTML = `
+        <div class="alert alert-success" role="alert">
+Modified!
+</div>
+`;
         } else {
           throw new Error("error");
-          alert("error");
         }
       })
 
       .catch((err) => {
         console.log(err);
+        alertDisplay.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+Error
+</div>`;
       });
     console.log("Modified");
   } else {

@@ -16,7 +16,9 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">LOGO</a>
+          <a class="navbar-brand" href="index.html"
+            ><img id="logo-img" src="assets/fastwheel.jpg" alt=""
+          /></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -36,11 +38,14 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="backoffice.html">Admin</a>
+                <a class="nav-link text-secondary" href="backoffice.html"
+                  >Admin</a
+                >
               </li>
             </ul>
-            <form class="d-flex" role="search">
+            <form id="search-form" class="d-flex" role="search">
               <input
+                id="search-input"
                 class="form-control me-2"
                 type="search"
                 placeholder="Search"
@@ -55,7 +60,16 @@
       </nav>
     </header>
     <main>
+      <h1 class="text-center mb-3 mt-2">FastWheel Shop</h1>
+      <h3 class="text-center mb-5">The only bike shop you'll ever need</h3>
       <div class="container">
+        <div class="row text-center">
+          <div class="col">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
         <div
           id="row-products"
           class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"

@@ -17,7 +17,7 @@ const productId = addressBarContent.get("productId");
 
 const renderProducts = (product) => {
   const card = document.createElement("div");
-  card.classList.add("card");
+  card.classList.add("card", "mb-3");
   card.innerHTML = `
           <img src="${product.imageUrl}" class="card-img-top" alt="product's image">
           <div class="card-body">
@@ -27,7 +27,6 @@ const renderProducts = (product) => {
                   <ul class="list-group list-group-flush">
                   <li class="list-group-item">${product.brand}</li>
                   <li class="list-group-item">${product.price}$</li>
-                  <a href="details.html?productId=${product._id}" class="btn btn-primary btn-sm">See details</a>
                   <a href="backoffice.html?productId=${product._id}" class="btn btn-warning btn-sm">Modify</a>
               </ul>
               

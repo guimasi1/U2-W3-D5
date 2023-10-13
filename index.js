@@ -1,6 +1,15 @@
 const rowProducts = document.getElementById("row-products");
-console.log(rowProducts);
+const form = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+const titles = document.getElementsByClassName("card-title");
+
+const spinner = document.getElementsByClassName("spinner-border")[0];
+const hideSpinner = () => {
+  spinner.classList.add("d-none");
+};
+
 const renderProducts = (product) => {
+  hideSpinner();
   const col = document.createElement("div");
   col.classList.add("col");
   col.innerHTML = `
@@ -10,14 +19,19 @@ const renderProducts = (product) => {
         <img src="${product.imageUrl}" class="card-img-top" alt="product's image">
         <div class="card-body">
                 <h5 class="card-title fw-bold ">${product.name}</h5>
-                <p class="card-text">${product.description}</p>
             </div>
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item">${product.brand}</li>
-                <li class="list-group-item">${product.price}$</li>
-                <a href="details.html?productId=${product._id}" class="btn btn-primary btn-sm">See details</a>
-                <a href="backoffice.html?productId=${product._id}" class="btn btn-warning btn-sm">Modify</a>
+                <li class="list-group-item">Brand: ${product.brand}</li>
+                <li class="list-group-item">Price: ${product.price}$</li>
+                <div class="text-center">
+                <li class="list-group-item">
+            <a href="details.html?productId=${product._id}" class="btn btn-primary ">See details</a>
+            <a href="backoffice.html?productId=${product._id}" class="btn btn-warning px-5">Edit</a>
+            </div>
+            </li>
+
             </ul>
+          
             
     </div>   
     </div>   
