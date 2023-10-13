@@ -26,9 +26,6 @@ const addToCart = function (e) {
   const col = e.target.closest(".col");
   const titleText = col.querySelector(".card-title").innerText;
   const priceText = col.querySelector(".card li:nth-of-type(2)").innerText;
-  //   paraContainer.appendChild(para);
-  //   paraContainer.appendChild(pricePara);
-  //   paraContainer.appendChild(buttonRemove);
   cartDisplay.appendChild(paraContainer);
 
   paraContainer.innerHTML = `
@@ -43,8 +40,6 @@ const addToCart = function (e) {
   localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
   cartDisplay.classList.remove("d-none");
 };
-
-// localStorage.clear();
 
 const renderCart = () => {
   cartDisplay.innerHTML = localStorage.getItem("cartDisplay");
