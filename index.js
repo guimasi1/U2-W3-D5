@@ -28,6 +28,7 @@ emptyButton.addEventListener("click", emptyCart);
 const removeFromCart = function (event) {
   event.target.closest("div").remove();
   console.log("ok");
+  howManyArticles();
 };
 
 const addToCart = function (e) {
