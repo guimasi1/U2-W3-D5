@@ -7,6 +7,14 @@ const spinner = document.getElementsByClassName("spinner-border")[0];
 const hideSpinner = () => {
   spinner.classList.add("d-none");
 };
+const emptyButton = document.getElementById("empty-cart");
+
+const emptyCart = () => {
+  cartDisplay.innerHTML = "";
+  localStorage.clear();
+};
+
+emptyButton.addEventListener("click", emptyCart);
 
 const removeFromCart = function (event) {
   event.target.closest("div").remove();
