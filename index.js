@@ -8,22 +8,39 @@ const hideSpinner = () => {
   spinner.classList.add("d-none");
 };
 
+const removeFromCart = function (event) {
+  event.target.closest("div").remove();
+  console.log("ok");
+};
+
 const addToCart = function (e) {
   const paraContainer = document.createElement("div");
-  paraContainer.classList.add("d-flex", "justify-content-between");
-  const pricePara = document.createElement("p");
-  const para = document.createElement("p");
   const col = e.target.closest(".col");
   const titleText = col.querySelector(".card-title").innerText;
   const priceText = col.querySelector(".card li:nth-of-type(2)").innerText;
-  pricePara.innerText = priceText;
-  para.innerText = titleText;
-  paraContainer.appendChild(para);
-  paraContainer.appendChild(pricePara);
+  //   paraContainer.appendChild(para);
+  //   paraContainer.appendChild(pricePara);
+  //   paraContainer.appendChild(buttonRemove);
   cartDisplay.appendChild(paraContainer);
 
-  console.log(titleText);
+  paraContainer.innerHTML = `
+        <div class="d-flex justify-content-between ">
+            <div class="d-flex gap-5"> 
+            <p>${titleText}</p>
+            <p>${priceText}</p>
+            </div>
+            <button class="btn btn-secondary" onclick="removeFromCart(event)">Remove</button>
+        </div>
+  `;
 };
+
+// localStorage.clear();
+
+const renderCart = () => {
+  cartDisplay.innerHTML = localStorage.getItem("cartDisplay");
+};
+
+renderCart();
 
 showCartButton.addEventListener("click", () => {
   cartDisplay.classList.toggle("d-none");
