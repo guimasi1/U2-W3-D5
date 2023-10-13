@@ -41,6 +41,7 @@ const addToCart = function (e) {
         </div>
   `;
   localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
+  cartDisplay.classList.remove("d-none");
 };
 
 // localStorage.clear();
