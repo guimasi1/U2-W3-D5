@@ -21,6 +21,7 @@ const emptyCart = () => {
   cartDisplay.innerHTML = "";
   localStorage.clear();
   howManyArticles();
+  localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
 };
 
 emptyButton.addEventListener("click", emptyCart);
@@ -82,7 +83,7 @@ const renderProducts = (product) => {
                 <li class="list-group-item">
             <a href="details.html?productId=${product._id}" class="btn btn-primary mb-md-1">See Details</a>
             <a href="backoffice.html?productId=${product._id}" class="btn btn-warning mb-md-1">Edit</a>
-            <a href="#" class="btn btn-success mt-1" onclick="addToCart(event)">Add To Cart</a>
+            <a class="btn btn-success mt-1" onclick="addToCart(event)">Add To Cart</a>
             </div>
             </li>
 
