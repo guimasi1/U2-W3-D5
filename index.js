@@ -1,11 +1,20 @@
 const rowProducts = document.getElementById("row-products");
 const form = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
-const titles = document.getElementsByClassName("card-title");
-
+const showCartButton = document.getElementById("show-cart-button");
+const cartDisplay = document.getElementById("cart-display");
 const spinner = document.getElementsByClassName("spinner-border")[0];
 const hideSpinner = () => {
   spinner.classList.add("d-none");
+};
+
+const addToCart = function (e) {
+  const para = document.createElement("p");
+  const col = e.target.closest(".col");
+  const titleText = col.querySelector(".card-title").innerText;
+  para.innerHTML = titleText;
+  cartDisplay.appendChild(para);
+  console.log(titleText);
 };
 
 const renderProducts = (product) => {
@@ -27,7 +36,7 @@ const renderProducts = (product) => {
                 <li class="list-group-item">
             <a href="details.html?productId=${product._id}" class="btn btn-primary mb-md-1">See Details</a>
             <a href="backoffice.html?productId=${product._id}" class="btn btn-warning mb-md-1">Edit</a>
-            <a href="backoffice.html?productId=${product._id}" class="btn btn-success mt-1">Add To Cart</a>
+            <a href="#" class="btn btn-success mt-1" onclick="addToCart(event)">Add To Cart</a>
             </div>
             </li>
 
