@@ -24,7 +24,7 @@ const addToCart = function (e) {
   cartDisplay.appendChild(paraContainer);
 
   paraContainer.innerHTML = `
-        <div class="d-flex justify-content-between ">
+        <div class="d-flex justify-content-between mb-2  ">
             <div class="d-flex gap-5"> 
             <p>${titleText}</p>
             <p>${priceText}</p>
@@ -32,6 +32,7 @@ const addToCart = function (e) {
             <button class="btn btn-secondary" onclick="removeFromCart(event)">Remove</button>
         </div>
   `;
+  localStorage.setItem("cartDisplay", cartDisplay.innerHTML);
 };
 
 // localStorage.clear();
