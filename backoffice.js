@@ -203,16 +203,16 @@ Modified!
 </div>
 `;
         } else {
+          alertDisplay.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+Error
+</div>`;
           throw new Error("error");
         }
       })
 
       .catch((err) => {
         console.log(err);
-        alertDisplay.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-Error
-</div>`;
       });
     console.log("Modified");
   } else {

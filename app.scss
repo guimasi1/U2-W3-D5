@@ -17,4 +17,18 @@ $theme-colors: (
   border-radius: 50%;
 }
 
+.card .btn {
+  width: 40% !important;
+  @media screen and (min-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+.card li {
+  font-size: 0.9rem;
+}
+
+.card a {
+  font-size: 0.9rem;
+}
 @import "bootstrap-container/scss/bootstrap";

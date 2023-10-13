@@ -25,8 +25,9 @@ const renderProducts = (product) => {
                 <li class="list-group-item">Price: ${product.price}$</li>
                 <div class="text-center">
                 <li class="list-group-item">
-            <a href="details.html?productId=${product._id}" class="btn btn-primary ">See details</a>
-            <a href="backoffice.html?productId=${product._id}" class="btn btn-warning px-5">Edit</a>
+            <a href="details.html?productId=${product._id}" class="btn btn-primary mb-md-1">See Details</a>
+            <a href="backoffice.html?productId=${product._id}" class="btn btn-warning mb-md-1">Edit</a>
+            <a href="backoffice.html?productId=${product._id}" class="btn btn-success mt-1">Add To Cart</a>
             </div>
             </li>
 

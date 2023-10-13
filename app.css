@@ -4,6 +4,23 @@
   border-radius: 50%;
 }
 
+.card .btn {
+  width: 40% !important;
+}
+@media screen and (min-width: 768px) {
+  .card .btn {
+    width: 100% !important;
+  }
+}
+
+.card li {
+  font-size: 0.9rem;
+}
+
+.card a {
+  font-size: 0.9rem;
+}
+
 /*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
